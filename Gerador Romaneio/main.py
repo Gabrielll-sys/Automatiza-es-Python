@@ -2,29 +2,36 @@ from tkinter import *
 from tkinter import ttk
 from openpyxl import Workbook
 from openpyxl.drawing.image import Image
+from openpyxl.styles import *
+import datetime
 import os
+ferramentas=['Alicate ','Alicate','Serra','Alicate']
 
-
+data=datetime.date.today()
+def Criar():
+    # ferramentas.append(ferramenta_entry)
+    nova_label=ttk.Label(ferramentas[len(ferramentas)-1])
+    
+    print(ferramentas[1])
 def Salvar():
+    valores = [ferramenta_entry.get(),quantidade_spinbox.get(),unidade_combobox.get()]
+    # ferramentas.sort()
+    print(ferramentas)
     wb= Workbook()
     ws = wb.active
     ws.title="Testes"
-    # for i in range(int(first_name_entry.get()),int(last_name_entry.get())):
+    for i in range(1,20):
+        ws.append([valores[0],valores[1],valores[2]])
+       
         
-    #     ws['A'+str(i)]=i
-    #     ws['B'+str(i)]=i
-    #     ws['C'+str(i)]=i
-    #     ws['D'+str(i)]=i
-    #     ws['E'+str(i)]=i
-    #     ws['F'+str(i)]=i
-    #     ws['G'+str(i)]=i
-    #     ws['H'+str(i)]=i
-    #     ws['I'+str(i)]=i
-    #     ws['J'+str(i)]=i
-    #     ws['K'+str(i)]=i
-    ws['A4']= ferramenta_entry.get()
-
+    
+    # # img=Image("Logo.jpg")
+    # # # img.anchor = 'A10'
+    # # ws.add_image(img,'B1')
     wb.save("Teste.xlsx")
+print(data)
+
+
 window = Tk()
 window.title("Automatização Planilhas Master")
 
@@ -39,10 +46,11 @@ ferramenta_label = ttk.Label(user_info_frame, text="Ferramenta")
 ferramenta_label.grid(row=0, column=0)
 
 
-ferramenta_entry = ttk.Combobox(user_info_frame,value=["Alicate de bico"])
+ferramenta_entry = ttk.Combobox(user_info_frame,value=ferramentas)
 ferramenta_entry.grid(row=1, column=0)
 
-
+itens_adicionados_label=ttk.Label(user_info_frame,text=ferramentas)
+itens_adicionados_label.grid(row=4,column=1)
 title_label = ttk.Label(user_info_frame, text="Polegadas")
 unidade_combobox = ttk.Combobox(user_info_frame, values=['1/8"', '1/4"', '1/2"', '1"'])
 title_label.grid(row=0, column=1)
@@ -61,29 +69,8 @@ button.grid(row=3, column=1, sticky="news", padx=20, pady=10)
 for widget in user_info_frame.winfo_children():
     widget.grid_configure(padx=10, pady=5)
 
-# Saving Course Info
-courses_frame = ttk.LabelFrame(frame)
-courses_frame.grid(row=1, column=0, sticky="news", padx=20, pady=10)
-
-registered_label = ttk.Label(courses_frame, text="Registration Status")
 
 
-
-registered_label.grid(row=0, column=0)
-
-
-numcourses_label = ttk.Label(courses_frame, text= "# Completed Courses")
-numcourses_spinbox = ttk.Spinbox(courses_frame, from_=0, to='infinity')
-numcourses_label.grid(row=0, column=1)
-numcourses_spinbox.grid(row=1, column=1)
-
-numsemesters_label = ttk.Label(courses_frame, text="# Semesters")
-numsemesters_spinbox = ttk.Spinbox(courses_frame, from_=0, to="infinity")
-numsemesters_label.grid(row=0, column=2)
-numsemesters_spinbox.grid(row=1, column=2)
-
-for widget in courses_frame.winfo_children():
-    widget.grid_configure(padx=10, pady=5)
 
 
 
@@ -94,24 +81,3 @@ button = ttk.Button(frame, text="Enter data", command= Salvar)
 button.grid(row=3, column=0, sticky="news", padx=20, pady=10)
  
 window.mainloop()
-
-# wb= Workbook()
-# ws = wb.active
-# ws.title="Testes"
-# img=Image('')
-# for i in range(1,20):
-    
-#     ws['A'+str(i)]=i
-#     ws['B'+str(i)]=i
-#     ws['C'+str(i)]=i
-#     ws['D'+str(i)]=i
-#     ws['E'+str(i)]=i
-#     ws['F'+str(i)]=i
-#     ws['G'+str(i)]=i
-#     ws['H'+str(i)]=i
-#     ws['I'+str(i)]=i
-#     ws['J'+str(i)]=i
-#     ws['K'+str(i)]=i
-# ws.add_image(img,'A21')
-# wb.save("Teste.xlsx")
-

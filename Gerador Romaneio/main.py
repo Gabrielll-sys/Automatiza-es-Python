@@ -1,14 +1,22 @@
-from email.policy import default
+
 from tkinter import *
 from tkinter import ttk
 from typing import Sized
 from openpyxl import Workbook
 from openpyxl.drawing.image import Image
 from openpyxl.styles import *
+from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 import datetime
 import os
-ferramentas=['','Alicate ','Alicate','Serra','Alicate','Parafusadeira']
+
+arquivoCarregado=load_workbook('EXEMPLO DE FERRAMENTAS.xlsx')
+ferramentas=[
+'','Alicate De Corte ','Alicate Universal','Alicate Decapador',
+'Alicate Amperimetro Fluke','Alicate Prensa Terminal Tubular','Alicate Prensa Terminal Olhal'
+
+'Serra','Alicate','Parafusadeira']
+
 unidades=['','1/8"', '1/4"', '1/2"', '1"']
 data=datetime.date.today()
 dia=datetime.date.day
@@ -42,18 +50,16 @@ def CriaPlanilha():
     ws['D1']="Part Nº"
     ws['E1']="Descrição do Material"
    
-    ws.merge_cells(start_row=2, start_column=2, end_row=3, end_column=2)
-    img=Image("Logo.png")
+    # ws.merge_cells(start_row=2, start_column=2, end_row=3, end_column=2)
     
- 
-    ws.add_image(img,'A2')
-    for ferramenta in itens:
-        ws.append([ferramenta[0],ferramenta[1],ferramenta[2]])
+    # for ferramenta in itens:
+    #     arquivoCarregado.append([ferramenta[0],ferramenta[1],ferramenta[2]])
        
         
     
-      
-    wb.save("Teste.xlsx")
+    print(arquivoCarregado.get_named_ranges)
+   
+    # arquivoCarregado.save("EXEMPLO DE FERRAMENTAS.xlsx")
 
 
 
